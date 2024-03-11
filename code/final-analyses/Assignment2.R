@@ -1,16 +1,23 @@
 ### Analysis of BioITA data
 
-# Set working direcotry to repo-template folder
+# Set working directory to repo-template folder
+# bioita-data2 just has the column headers changed to avoid Xs in the dataframe
 
 ## Imports data into RStudio
 # Sets the file path to the CSV file
 file_path <- 'data/bioita-data.csv'
 
-# Reads the CSV file into a data frame
-bioita_data <- read.csv(file_path)
+# Import required libraries
+library(tidyverse)
 
-# Views data frame (creates table)
+# Reads the CSV file into a data frame
+bioita_data <- read_csv(file_path)
+
+# Views data frame
 head(bioita_data)
+
+## Creates table of data
+View(bioita_data)
 
 ## Calculates the averages and standard deviations of itaconate rows
 itaconate <- c(1, 2, 3)
@@ -26,7 +33,7 @@ cis_aconitate_data <- bioita_data[cis_aconitate, ]
 cis_aconitate_averages <- colMeans(cis_aconitate_data[, -1], na.rm = TRUE)
 cis_aconitate_std <- apply(cis_aconitate_data[, -1], 2, sd, na.rm = TRUE)
 
-## Creates bar graph with stds of itacoante and cis-aconitate concentrations vs. fluorescence
+## Creates bar graph with stds of itaconate and cis-aconitate concentrations vs. fluorescence
 concentration <- c(40, 35, 30, 25, 20, 15, 10, 0)
 
 bp <- barplot(
